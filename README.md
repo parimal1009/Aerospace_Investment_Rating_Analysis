@@ -1,60 +1,93 @@
-Aerospace Investment Rating Analysis
+SFR Aerospace Investment Rating Analysis
 Project Overview
 
-The Aerospace Investment Rating Analysis project aims to assist investors in making informed decisions by analyzing the SpaceFund Realty (SFR) ratings of aerospace companies. These ratings are based on factors such as missions, payloads, and launch costs. The SFR rating ranges from 1 to 9, with higher ratings indicating more established and stable companies.
-Objectives:
+This project focuses on analyzing the SpaceFund Realty (SFR) rating of aerospace companies and their missions. The SFR is a rating system that ranges from 1 to 9, where a higher score indicates a more developed and stable company. The objective is to help investors make informed decisions by analyzing the companies based on factors such as launch cost, payload, mission type, and more.
+Dataset
 
-    Group aerospace companies based on key characteristics such as their description, mission type, payload, and launch cost.
-    Perform exploratory data analysis (EDA) to uncover relationships between the SFR rating and independent variables.
-    Build and evaluate machine learning models to predict the SFR ratings of aerospace companies.
-
+The dataset includes various features related to aerospace companies and their missions:
+Column Name	Description
+Company	Name of the company
+SFR	SpaceFund Realty rating of the company
+Payload(kg)	Payload of the mission (in kilograms)
+Launch Cost (million USD)	Launch cost of the mission (in million USD)
+Price per kg	Price per kg of the payload
+Launch Class	Launch class of the mission (Small, Medium, Heavy, Tourism)
+Orbit Altitude	Orbit altitude of the mission (LEO, GTO, Suborbital, Lunar)
+Tech Type	Technology type of the mission (Rocket, Spaceplane, Balloon)
+Country	Country of origin of the company
+HQ Location	Headquarters location of the company
+Description	Description of the company or mission
 Data Preprocessing
-1. Grouping by Company Description:
 
-Categorized the unique values in the description column into seven major categories for easier analysis.
-2. Outlier Removal:
+    Handling Missing Data:
+        Dropped the HQ Location column as it is redundant with the Country column.
+        Filled missing values in Launch Class and Orbit Altitude with the mode.
+        Dropped the Funding ($M) column due to significant missing data.
 
-Identified and removed outliers to ensure that models were trained on accurate data and not skewed by extreme values.
-3. Label Encoding:
+    Categorization:
+        Grouped the companies based on their descriptions into 7 categories:
+            Launch Vehicle Development
+            Launch Services
+            Balloon-Based Technologies
+            Space Tourism and Suborbital
+            Satellite Technology and Services
+            Innovative Propulsion Technologies
+            Space Access and Technology Innovation
 
-Converted categorical columns such as company descriptions, mission types, and orbit classes into numerical values using label encoding for machine learning compatibility.
-4. Missing Data Handling:
+    Handling Outliers:
+        Replaced invalid zero values in columns like Payload, SFR, and Launch Cost with the mean/median.
 
-Handled missing values by either imputing them with appropriate statistical measures (e.g., mean, median) or removing records where necessary.
 Exploratory Data Analysis (EDA)
 
-The following analyses were performed to gain insights into the dataset:
+The EDA helped in understanding the distribution of the data and exploring relationships between the variables:
 
-    Distribution Plots for variables such as launch cost, payload, and SFR to observe their spread.
-    Bar Charts to visualize the number of companies from each country and their corresponding SFR ratings.
-    Box Plots to investigate the relationships between launch cost, payload, and SFR, with a focus on identifying outliers.
-    Correlation Matrix Heatmap to explore relationships between the independent variables and the SFR rating.
+    Country-wise Analysis: The United States has the highest number of missions and companies with higher SFR ratings, followed by China and the UK.
+    Mission Type: Rocket-type missions dominate the dataset, with a focus on small payloads and LEO missions.
+    Launch Cost Distribution: Most missions had a launch cost between $5-10 million, with only a few exceeding $100 million.
+    Payload vs SFR: There is a positive correlation between the mission payload and SFR rating, with more developed companies handling heavier payloads.
 
-Model Building
+Data Visualizations
 
-The following machine learning models were used to predict the SFR ratings:
+The key visualizations created include:
+
+    Number of Missions per Country
+    Mission Type Distribution
+    Launch Class vs SFR
+    Payload vs SFR
+    Orbit Altitude vs SFR
+
+Machine Learning Models
+
+Two machine learning models were used to predict the SFR rating:
 
     Random Forest Classifier
+        Hyperparameter tuning using GridSearchCV.
     Decision Tree Classifier
+        Hyperparameter tuning for better model comparison.
 
-Train-Test Split:
+Model Evaluation
 
-The dataset was split into 80% training and 20% testing subsets for model training and evaluation.
-Model Evaluation:
+The models were evaluated using:
 
-    Confusion Matrix: Visualized the true vs predicted classes.
-    Distribution Plot: Displayed how well the predicted SFR ratings aligned with the actual ratings.
-    Classification Report: Provided accuracy, precision, recall, and F1 score to evaluate model performance.
+    Confusion Matrix
+    Classification Report
+    Accuracy and F1-score
 
-Both models achieved 87% accuracy. However, due to the small dataset size, recall scores for predicting SFR ratings greater than 6 were lower, suggesting the need for more data to improve model performance in this range.
 Conclusion
 
-    Most aerospace companies with high SFR ratings (greater than 6) were from the US, followed by China, despite China having fewer companies.
-    Higher launch costs and payloads were associated with higher SFR ratings, indicating that more established companies have the capacity for larger, more costly missions.
-    Both the Random Forest and Decision Tree models performed well but could benefit from a larger dataset for predicting higher SFR ratings.
+    US-based aerospace companies dominate the dataset, with a higher number of companies showing a strong SFR rating (>6).
+    Rocket-type missions focusing on small payloads to LEO are common among less-developed companies with low SFR ratings (2-3).
+    Larger payloads and complex missions are more frequent among companies with higher SFR ratings, indicating better stability and development.
 
-Future Improvements
+Technologies Used
 
-    Increase the dataset: A larger dataset could improve the machine learning models' ability to predict higher SFR ratings.
-    Enhance models: Consider more sophisticated models or parameter tuning to improve accuracy.
+    Python: Pandas, NumPy, Matplotlib, Seaborn, Scikit-learn
+    Jupyter Notebook: For data exploration and model development
+    Machine Learning: Random Forest Classifier, Decision Tree Classifier
+    GridSearchCV: For hyperparameter tuning
 
+Future Enhancements
+
+    Incorporate additional datasets for further refinement of SFR predictions.
+    Explore other models such as Support Vector Machines (SVM) or Gradient Boosting.
+    Develop a dashboard for real-time data analysis and visualization.
