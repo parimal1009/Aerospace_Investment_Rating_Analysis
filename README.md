@@ -1,4 +1,4 @@
-SFR Aerospace Investment Rating Analysis
+Aerospace Investment Rating Analysis
 Project Overview
 
 This project focuses on analyzing the SpaceFund Realty (SFR) rating of aerospace companies and their missions. The SFR is a rating system that ranges from 1 to 9, where a higher score indicates a more developed and stable company. The objective is to help investors make informed decisions by analyzing the companies based on factors such as launch cost, payload, mission type, and more.
